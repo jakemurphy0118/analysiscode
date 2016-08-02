@@ -23,7 +23,8 @@ public:
 	int GetRightChannel(int barNum){return 2*barNum - 1;}
 	bool WasOppBarEvent(int OppositeBar[24],int wasHit[24]);
 	double GetLeftTDCVal(std::vector<UInt_t>*,int);
-	double GetLeftTDCVal(std::vector<UInt_t>*,int);
+	double GetRightTDCVal(std::vector<UInt_t>*,int);
+	double GetEnergyOfBar(double, double, double);
 	
 	
 	

@@ -38,31 +38,31 @@ HistoMaker::HistoMaker(){
 HistoMaker::~HistoMaker(){}
 
 void HistoMaker::SetInvAttCoeff(){
-
-	InvAttCoeff[0] = 1;
-	InvAttCoeff[1] = 1;
-	InvAttCoeff[2] = 1;
-	InvAttCoeff[3] = 1;
-	InvAttCoeff[4] = 1;
-	InvAttCoeff[5] = 1;
-	InvAttCoeff[6] = 1;
-	InvAttCoeff[7] = 1;
-	InvAttCoeff[8] = 1;
-	InvAttCoeff[9] = 1;
-	InvAttCoeff[10] = 1;
-	InvAttCoeff[11] = 1;
-	InvAttCoeff[12] = 1;
-	InvAttCoeff[13] = 1;
-	InvAttCoeff[14] = 1;
-	InvAttCoeff[15] = 1;
-	InvAttCoeff[16] = 1;
-	InvAttCoeff[17] = 1;
-	InvAttCoeff[18] = 1;
-	InvAttCoeff[19] = 1;
-	InvAttCoeff[20] = 1;
-	InvAttCoeff[21] = 1;
-	InvAttCoeff[22] = 1;
-	InvAttCoeff[23] = 1;
+//cm^-1
+	InvAttCoeff[0] = 0.0447;
+	InvAttCoeff[1] = 0.0454;
+	InvAttCoeff[2] = 0.0413;
+	InvAttCoeff[3] = 0.0454;
+	InvAttCoeff[4] = 0.0441;
+	InvAttCoeff[5] = 0.0465;
+	InvAttCoeff[6] = 0.0411;
+	InvAttCoeff[7] = 0.0425;
+	InvAttCoeff[8] = 0.0350;
+	InvAttCoeff[9] = 0.0359;
+	InvAttCoeff[10] = 0.0404;
+	InvAttCoeff[11] = 0.0381;
+	InvAttCoeff[12] = 0.0329;
+	InvAttCoeff[13] = 0.0368;
+	InvAttCoeff[14] = 0.0355;
+	InvAttCoeff[15] = 0.0372;
+	InvAttCoeff[16] = 0.0368;
+	InvAttCoeff[17] = 0.0367;
+	InvAttCoeff[18] = 0.0363;
+	InvAttCoeff[19] = 0.0425;
+	InvAttCoeff[20] = 0.0390;
+	InvAttCoeff[21] = 0.0398;
+	InvAttCoeff[22] = 0.0380;
+	InvAttCoeff[23] = 0.0405;
 
 }
 
@@ -283,7 +283,7 @@ void HistoMaker::MakeHistos(TTree* tTDC1,TTree* tTDC2,TTree* tTDC3,TTree* tQDC1,
 				qL = eb->GetLeftCharge(qdc1,currentbar);
 				qR = eb->GetRightCharge(qdc1,currentbar);
 				zPos = eb->ZRecon(qdc1,InvAttCoeff[j],currentbar);
-				q = Econst * std::sqrt(qL*qR);
+				q = eb->GetEnergyOfBar(InvAttCoeff[j],qL,qR);
 
 				histObj = "qdc1CH" + schL.str();
 				FillTH1D(f,histObj,qL);
@@ -294,7 +294,7 @@ void HistoMaker::MakeHistos(TTree* tTDC1,TTree* tTDC2,TTree* tTDC3,TTree* tQDC1,
 				qL = eb->GetLeftCharge(qdc2,currentbar);
 				qR = eb->GetRightCharge(qdc3,currentbar);
 				zPos = eb->ZRecon(qdc2,InvAttCoeff[j],currentbar);
-				q = Econst * std::sqrt(qL*qR);
+				q = eb->GetEnergyOfBar(InvAttCoeff[j],qL,qR);
 
 				histObj = "qdc2CH" + schL.str();
 				FillTH1D(f,histObj,qL);
@@ -306,7 +306,7 @@ void HistoMaker::MakeHistos(TTree* tTDC1,TTree* tTDC2,TTree* tTDC3,TTree* tQDC1,
 				qL = eb->GetLeftCharge(qdc3,currentbar);
 				qR = eb->GetRightCharge(qdc3,currentbar);
 				zPos = eb->ZRecon(qdc3,InvAttCoeff[j],currentbar);	
-				q = Econst * std::sqrt(qL*qR);	
+				q = eb->GetEnergyOfBar(InvAttCoeff[j],qL,qR);
 
 				histObj = "qdc3CH" + schL.str();
 				FillTH1D(f,histObj,qL);

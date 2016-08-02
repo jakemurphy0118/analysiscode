@@ -91,7 +91,17 @@ double EventBuilder::GetRightTDCVal(std::vector<UInt_t> *tdc, int bar){
 	return t;
 }
 
+double EventBuilder::GetEnergyOfBar(double invattcoeff, double qL, double qR){
+	double L = 55.0;
+	double EoverP = 1.0;	
+	double q = std::exp(0.5*L*invattcoeff) * std::sqrt(qL * qR) * EoverP;
+	return q;
+}
 
+double GetQOfChannel(std::vector<UInt_t> *qdc, int channel){
+	double q = (double)qdc->at(channel);
+	return q;
+}
 
 
 
